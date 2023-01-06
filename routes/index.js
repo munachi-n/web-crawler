@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-
-// Route files will be imported here as they are created
-// e.g. const crawlerRoutes = require('./crawlerRoutes');
+const crawlerRoutes = require('./crawlerRoutes');
 
 // Mount routes
-// router.use('/api/crawler', crawlerRoutes);
+router.use('/api/crawler', crawlerRoutes);
 
 // Health check
 router.get('/health', (req, res) => {
