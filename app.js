@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const config = require('./config');
 const routes = require('./routes');
+const { errorHandler, notFoundHandler } = require('./middlewares/errorHandler');
 
 const app = express();
 
@@ -20,5 +21,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Routes
 app.use('/', routes);
+
+// Error handling
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 module.exports = app;
