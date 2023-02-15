@@ -1,0 +1,20 @@
+<div class="result-card <%= result.error ? 'error-card' : '' %>">
+  <% if (result.error) { %>
+    <h3>Error</h3>
+    <div class="url"><%= result.url %></div>
+    <p><%= result.error %></p>
+  <% } else { %>
+    <h3><%= result.title || 'Untitled' %></h3>
+    <div class="url"><a href="<%= result.url %>" target="_blank"><%= result.url %></a></div>
+    <% if (result.metaDescription) { %>
+      <p class="description"><%= result.metaDescription %></p>
+    <% } %>
+    <div class="meta">
+      <span>Links: <%= result.linkCount %></span>
+      <span>Images: <%= result.imageCount %></span>
+      <% if (result.depth !== undefined) { %>
+        <span>Depth: <%= result.depth %></span>
+      <% } %>
+    </div>
+  <% } %>
+</div>

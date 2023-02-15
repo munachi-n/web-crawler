@@ -1,0 +1,20 @@
+<div class="stats-bar">
+  <div class="stat">
+    <div class="number"><%= stats.pagesVisited %></div>
+    <div class="label">Pages Visited</div>
+  </div>
+  <div class="stat">
+    <div class="number"><%= stats.resultsCollected %></div>
+    <div class="label">Results</div>
+  </div>
+  <div class="stat">
+    <div class="number"><%= stats.errors %></div>
+    <div class="label">Errors</div>
+  </div>
+  <% if (stats.duration) { %>
+    <div class="stat">
+      <div class="number"><%= (stats.duration / 1000).toFixed(1) %>s</div>
+      <div class="label">Duration</div>
+    </div>
+  <% } %>
+</div>
