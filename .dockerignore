@@ -1,0 +1,8 @@
+node_modules
+.env
+.git
+data
+exports
+logs
+*.log
+build-history*.sh
