@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crawl Jobs - Web Crawler</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Crawl Jobs</h1>
+    <p>View and manage your crawl jobs</p>
+  </header>
+
+  <nav style="max-width:960px;margin:1rem auto;padding:0 1rem">
+    <a href="/">Home</a> | <a href="/jobs">Jobs</a> | <a href="/api/docs">API Docs</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>All Jobs</h2>
+      <div id="jobs-list">
+        <p>Loading jobs...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>Web Crawler &copy; 2023</p></footer>
+
+  <script>
+    (async () => {
+      const list = document.getElementById('jobs-list');
+      try {
+        const res = await fetch('/api/jobs');
+        const data = await res.json();
+        if (!data.data || !data.data.length) {
+          list.innerHTML = '<p>No jobs found. Start a crawl from the <a href="/">home page</a>.</p>';
+          return;
+        }
+        list.innerHTML = data.data.map(j => `
+          <div class="result-card">
+            <h3>${j.url}</h3>
+            <div class="meta">
+              <span>Status: <strong>${j.status}</strong></span>
+              <span>Results: ${j.resultCount || 0}</span>
+              <span>ID: ${j.id}</span>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        list.innerHTML = '<p>Error loading jobs.</p>';
+      }
+    })();
+  </script>
+</body>
+</html>
