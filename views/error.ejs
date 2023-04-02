@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error - Web Crawler</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header style="background:var(--danger,#dc2626)">
+    <h1>Error <%= statusCode || 500 %></h1>
+    <p><%= message || 'Something went wrong' %></p>
+  </header>
+
+  <main>
+    <section>
+      <h2>What happened?</h2>
+      <p><%= message || 'An unexpected error occurred.' %></p>
+      <% if (typeof stack !== 'undefined' && stack) { %>
+        <details>
+          <summary>Technical details</summary>
+          <pre style="overflow-x:auto;padding:1rem;background:#f3f4f6;border-radius:8px;font-size:0.85rem"><%= stack %></pre>
+        </details>
+      <% } %>
+      <p><a href="/">Back to Home</a></p>
+    </section>
+  </main>
+
+  <footer><p>Web Crawler &copy; 2023</p></footer>
+</body>
+</html>
